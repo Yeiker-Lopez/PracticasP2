@@ -20,3 +20,6 @@ export class CreateFacturaDto {
     @IsOptional()
     status?: boolean; 
 }
+
+
+
