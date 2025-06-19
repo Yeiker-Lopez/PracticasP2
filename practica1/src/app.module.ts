@@ -18,3 +18,5 @@ import { PagosModule } from './pagos/pagos.module';
   providers: [],
 })
 export class AppModule {}
+
+import { IsNotEmpty, IsNumber, IsOptional, IsString } from 'class-validator';
