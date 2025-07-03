@@ -1,0 +1,84 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Factura {
+  id: ID!
+  Pago: String!
+  Descripcion: String!
+  Monto_Total: String!
+}
+
+type Metodospago {
+  id: ID!
+  MetodoPago: String!
+  Descripcion: String!
+  Estado: String!
+}
+
+type Pago {
+  id: ID!
+  Fecha: String!
+  Estado: String!
+  Monto: String!
+}
+
+type Query {
+  facturas: [Factura!]!
+  factura(id: String!): Factura!
+  metodospagos: [Metodospago!]!
+  metodospago(id: String!): Metodospago!
+  pagos: [Pago!]!
+  pago(id: String!): Pago!
+}
+
+type Mutation {
+  createFactura(createFacturaInput: CreateFacturaInput!): Factura!
+  updateFactura(updateFacturaInput: UpdateFacturaInput!): Factura!
+  removeFactura(id: String!): Factura!
+  createMetodospago(createMetodospagoInput: CreateMetodospagoInput!): Metodospago!
+  updateMetodospago(UpdateMetodospagoInput: UpdateMetodospagoInput!): Metodospago!
+  removeMetodospago(id: String!): Metodospago!
+  createPago(createPagoInput: CreatePagoInput!): Pago!
+  updatePago(updatePagoInput: UpdatePagoInput!): Pago!
+  removePago(id: String!): Pago!
+}
+
+input CreateFacturaInput {
+  Pago: String!
+  Descripcion: String!
+  Monto_Total: String!
+}
+
+input UpdateFacturaInput {
+  Pago: String
+  Descripcion: String
+  Monto_Total: String
+  id: ID!
+}
+
+input CreateMetodospagoInput {
+  MetodoPago: String!
+  Descripcion: String!
+  Estado: String!
+}
+
+input UpdateMetodospagoInput {
+  MetodoPago: String
+  Descripcion: String
+  Estado: String
+  id: ID!
+}
+
+input CreatePagoInput {
+  Fecha: String!
+  Estado: String!
+  Monto: String!
+}
+
+input UpdatePagoInput {
+  Fecha: String
+  Estado: String
+  Monto: String
+  id: ID!
+}
