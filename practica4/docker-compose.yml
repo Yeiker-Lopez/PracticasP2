@@ -1,0 +1,34 @@
+# docker-compose.yml
+version: '3.8'
+
+services:
+  nats:
+    image: nats
+    container_name: nats_server # Renamed for clarity
+    ports:
+      - "4222:4222" # Expose NATS client port
+      - "8222:8222" # Optional: Expose NATS monitoring port for debugging
+    command: -DV # Optional: Enable verbose logging for NATS server
+
+  gateway:
+    build:
+      context: ./gateway # Path to your gateway folder
+    container_name: gateway_app # Renamed for clarity
+    depends_on:
+      - nats
+    environment:
+      # Use the service name 'nats' as the hostname for NATS
+      - NATS_SERVERS=nats://nats:4222 # Matches your NestJS 'envs.NATS_SERVERS'
+      - PORT=3000 # Good practice to define gateway port explicitly
+    ports:
+      - "3000:3000" # Expose gateway's HTTP port
+
+  usuario:
+    build:
+      context: ./usuario # Path to your usuario folder
+    container_name: usuario_service # Renamed for clarity
+    depends_on:
+      - nats
+    environment:
+      # Use the service name 'nats' as the hostname for NATS
+      - NATS_SERVERS=nats://nats:4222 # Matches your NestJS 'envs.NATS_SERVERS'
